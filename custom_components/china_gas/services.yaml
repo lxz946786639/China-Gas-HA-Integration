@@ -1,0 +1,15 @@
+refresh_account:
+  name: Refresh account
+  description: Refresh one selected China Gas account, or all configured China Gas accounts when no target is selected.
+  target:
+    entity:
+      integration: china_gas
+  fields:
+    force:
+      name: Force refresh
+      description: Bypass the coordinator debounce and request the China Gas API immediately.
+      required: false
+      default: false
+      selector:
+        boolean:
+

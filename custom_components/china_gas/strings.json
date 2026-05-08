@@ -1,0 +1,217 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "中国燃气账号",
+        "description": "填写必填账号信息。只有需要覆盖默认值时才展开高级选项。",
+        "data": {
+          "advanced_options": "高级选项",
+          "name": "实例名称",
+          "cust_code": "燃气编号（custCode）",
+          "cust_name": "用户名（custName）",
+          "user_id": "小程序用户 ID（userId）",
+          "access_token": "访问令牌（accessToken）",
+          "secret_key": "签名盐（secretKey）",
+          "x_mas_app_info": "应用身份标识（x-mas-app-info）",
+          "referer": "来源页面（Referer）",
+          "access_from": "来源标识（accessFrom）",
+          "user_agent": "用户代理（User-Agent）",
+          "bill_months": "账单查询月数（2-12）"
+        },
+        "data_description": {
+          "cust_code": "中国燃气客户编号。",
+          "cust_name": "小程序接口中的 custName。",
+          "user_id": "小程序请求中的 userId。",
+          "access_token": "请求头中的 accessToken。",
+          "secret_key": "用于生成接口签名的 secretKey。",
+          "x_mas_app_info": "请求头中的 x-mas-app-info。",
+          "referer": "请求头中的 Referer。",
+          "bill_months": "查询最近几个月的月度账单，范围 2-12。"
+        },
+        "sections": {
+          "advanced_options": {
+            "name": "高级选项",
+            "description": "通常保持默认值即可。",
+            "data": {
+              "name": "实例名称",
+              "referer": "来源页面（Referer）",
+              "access_from": "来源标识（accessFrom）",
+              "user_agent": "用户代理（User-Agent）",
+              "bill_months": "账单查询月数（2-12）"
+            },
+            "data_description": {
+              "name": "不填写时默认为“燃气编号-用户名”。",
+              "referer": "请求头中的 Referer。",
+              "access_from": "默认 yphpaymp。",
+              "user_agent": "默认使用微信小程序 User-Agent。",
+              "bill_months": "查询最近几个月的月度账单，范围 2-12。"
+            }
+          }
+        }
+      },
+      "refresh": {
+        "title": "刷新设置",
+        "description": "设置当前中国燃气账号的刷新周期。",
+        "data": {
+          "update_interval_minutes": "刷新周期（分钟）"
+        },
+        "data_description": {
+          "update_interval_minutes": "默认 360 分钟。"
+        }
+      }
+    },
+    "error": {
+      "account_not_found": "未查询到燃气账号，请检查燃气编号和用户名。",
+      "cannot_connect": "无法连接中国燃气服务，请检查网络和小程序请求头。",
+      "invalid_auth": "Token 无效，请更新访问令牌和小程序环境信息。",
+      "unknown": "未知错误"
+    },
+    "abort": {
+      "already_configured": "这个中国燃气账号已经配置。"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "中国燃气选项",
+        "description": "更新当前中国燃气账号的凭据和请求头。",
+        "data": {
+          "advanced_options": "高级选项",
+          "name": "实例名称",
+          "cust_code": "燃气编号（custCode）",
+          "cust_name": "用户名（custName）",
+          "user_id": "小程序用户 ID（userId）",
+          "access_token": "访问令牌（accessToken）",
+          "secret_key": "签名盐（secretKey）",
+          "x_mas_app_info": "应用身份标识（x-mas-app-info）",
+          "referer": "来源页面（Referer）",
+          "access_from": "来源标识（accessFrom）",
+          "user_agent": "用户代理（User-Agent）",
+          "bill_months": "账单查询月数（2-12）"
+        },
+        "data_description": {
+          "cust_code": "中国燃气客户编号。",
+          "cust_name": "小程序接口中的 custName。",
+          "user_id": "小程序请求中的 userId。",
+          "access_token": "请求头中的 accessToken。",
+          "secret_key": "用于生成接口签名的 secretKey。",
+          "x_mas_app_info": "请求头中的 x-mas-app-info。",
+          "referer": "请求头中的 Referer。",
+          "bill_months": "查询最近几个月的月度账单，范围 2-12。"
+        },
+        "sections": {
+          "advanced_options": {
+            "name": "高级选项",
+            "description": "通常保持默认值即可。",
+            "data": {
+              "name": "实例名称",
+              "referer": "来源页面（Referer）",
+              "access_from": "来源标识（accessFrom）",
+              "user_agent": "用户代理（User-Agent）",
+              "bill_months": "账单查询月数（2-12）"
+            },
+            "data_description": {
+              "name": "不填写时默认为“燃气编号-用户名”。",
+              "referer": "请求头中的 Referer。",
+              "access_from": "默认 yphpaymp。",
+              "user_agent": "默认使用微信小程序 User-Agent。",
+              "bill_months": "查询最近几个月的月度账单，范围 2-12。"
+            }
+          }
+        }
+      },
+      "refresh": {
+        "title": "刷新设置",
+        "description": "设置当前中国燃气账号的刷新周期。",
+        "data": {
+          "update_interval_minutes": "刷新周期（分钟）"
+        },
+        "data_description": {
+          "update_interval_minutes": "默认 360 分钟。"
+        }
+      }
+    },
+    "error": {
+      "account_not_found": "未查询到燃气账号，请检查燃气编号和用户名。",
+      "cannot_connect": "无法连接中国燃气服务，请检查网络和小程序请求头。",
+      "invalid_auth": "Token 无效，请更新访问令牌和小程序环境信息。",
+      "unknown": "未知错误"
+    }
+  },
+  "entity": {
+    "sensor": {
+      "balance": {
+        "name": "余额"
+      },
+      "new_balance": {
+        "name": "最新余额"
+      },
+      "owe_money": {
+        "name": "欠费金额"
+      },
+      "latest_bill_fee": {
+        "name": "最新账单金额"
+      },
+      "latest_bill_usage": {
+        "name": "最新账单用气量"
+      },
+      "latest_bill_month": {
+        "name": "最新账单月份"
+      },
+      "last_12_months_usage": {
+        "name": "最近 12 个月总用气量"
+      },
+      "last_12_months_fee": {
+        "name": "最近 12 个月总费用"
+      },
+      "average_monthly_usage": {
+        "name": "月均用气量"
+      },
+      "average_monthly_fee": {
+        "name": "月均费用"
+      },
+      "last_record": {
+        "name": "最近表底数"
+      },
+      "last_record_date": {
+        "name": "最近抄表日期"
+      },
+      "qty_balance": {
+        "name": "剩余气量"
+      },
+      "max_gas": {
+        "name": "最大购气量"
+      },
+      "award_money": {
+        "name": "补贴金额"
+      },
+      "agent_money": {
+        "name": "代理金额"
+      },
+      "company": {
+        "name": "燃气公司"
+      },
+      "address": {
+        "name": "地址"
+      },
+      "mobile": {
+        "name": "电话"
+      },
+      "gas_meter": {
+        "name": "燃气表"
+      },
+      "customer_type": {
+        "name": "客户类型"
+      },
+      "customer_status": {
+        "name": "客户状态"
+      },
+      "meter_status": {
+        "name": "表具状态"
+      },
+      "monthly_bills": {
+        "name": "月度账单"
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "domain": "china_gas",
+  "name": "China Gas",
+  "after_dependencies": [],
+  "codeowners": [
+    "@lxz946786639"
+  ],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/lxz946786639/China-Gas-HA-Integration",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/lxz946786639/China-Gas-HA-Integration/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}
+

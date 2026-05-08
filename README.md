@@ -1,0 +1,145 @@
+# China Gas Home Assistant Integration
+
+[![HACS Custom](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://hacs.xyz/docs/faq/custom_repositories/)
+[![GitHub release](https://img.shields.io/github/v/release/lxz946786639/China-Gas-HA-Integration?display_name=tag)](https://github.com/lxz946786639/China-Gas-HA-Integration/releases)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
+
+中国燃气 Home Assistant 自定义集成。通过中国燃气微信小程序接口查询燃气账号基本信息、月度账单信息和账单统计数据。
+
+## 功能
+
+- 通过 UI 配置流添加集成。
+- 单个集成实例对应一个燃气账号。
+- 支持多账号：在 Home Assistant 中重复添加 China Gas 集成即可。
+- 获取账号基本信息：余额、欠费金额、最近表底数、最近抄表日期等。
+- 获取月度账单信息：最新账单月份、最新账单金额、最新账单用气量等。
+- 账单统计传感器：
+  - 最近 12 个月总用气量
+  - 最近 12 个月总费用
+  - 月均用气量
+  - 月均费用
+- 支持手动刷新服务：`china_gas.refresh_account`。
+- 提供诊断信息脱敏。
+
+## 安装
+
+### HACS
+
+1. 打开 HACS。
+2. 进入“集成”页面。
+3. 选择右上角菜单中的“自定义存储库”。
+4. 添加本仓库地址：
+
+   ```text
+   https://github.com/lxz946786639/China-Gas-HA-Integration
+   ```
+
+5. 类别选择 `Integration`。
+6. 安装 `China Gas`。
+7. 重启 Home Assistant。
+8. 在“设置” -> “设备与服务”中添加 `China Gas`。
+
+### 手动安装
+
+1. 将 `custom_components/china_gas` 复制到 Home Assistant 配置目录的 `custom_components/china_gas`。
+2. 重启 Home Assistant。
+3. 在“设置” -> “设备与服务”中添加 `China Gas`。
+
+## 配置
+
+每个 China Gas 集成实例只配置一个燃气账号。多个燃气账号请多次添加集成。
+
+添加集成分 2 步：
+
+1. 填写账号信息。必填项默认展开，其它字段在“高级选项”中默认收起并带默认值。
+2. 配置刷新周期，单位为分钟。
+
+需要从中国燃气微信小程序请求中获取以下信息：
+
+| 字段 | 必填 | 说明 |
+| --- | --- | --- |
+| 燃气编号 | 是 | 中国燃气客户编号。 |
+| 用户名 | 是 | 小程序请求中的 `custName`。 |
+| 小程序用户 ID | 是 | 请求头或请求体中的 `userId`。 |
+| 访问令牌 | 是 | 请求头中的 `accessToken`。 |
+| 签名盐 | 是 | 用于生成接口签名。 |
+| 应用身份标识 | 是 | 请求头中的 `x-mas-app-info`。 |
+| 实例名称 | 否 | 高级选项。不填时默认为 `{燃气编号}-{用户名}`。 |
+| Referer | 否 | 高级选项，带默认值。 |
+| 来源标识 | 否 | 默认 `yphpaymp`。 |
+| User-Agent | 否 | 默认使用通用微信小程序 User-Agent。 |
+| 账单查询月数 | 否 | 高级选项，范围 2-12，默认 12。 |
+| 刷新周期 | 否 | 第二步配置，单位分钟，默认 360 分钟。 |
+
+> 请不要把自己的 token、用户 ID、手机号、地址、表号等信息提交到公开仓库或 issue。
+
+## 实体
+
+默认启用：
+
+| 实体 | 说明 |
+| --- | --- |
+| 余额 | 当前燃气余额。 |
+| 最新余额 | 账号基本信息中的新余额字段。 |
+| 欠费金额 | 当前欠费金额。 |
+| 最新账单金额 | 最近账单的总费用。 |
+| 最新账单用气量 | 最近账单的用气量。 |
+| 最新账单月份 | 最近账单月份。 |
+| 最近 12 个月总用气量 | 最近 12 个账单月份的用气量汇总。 |
+| 最近 12 个月总费用 | 最近 12 个账单月份的费用汇总。 |
+| 月均用气量 | 最近 12 个账单月份总用气量除以实际账单月份数。 |
+| 月均费用 | 最近 12 个账单月份总费用除以实际账单月份数。 |
+| 最近表底数 | 账号基本信息中的最近表底数。 |
+| 最近抄表日期 | 账号基本信息中的最近抄表日期。 |
+| 剩余气量 | 账号基本信息中的剩余气量。 |
+| 最大购气量 | 账号基本信息中的最大购气量。 |
+| 补贴金额 | 账号基本信息中的补贴金额。 |
+| 代理金额 | 账号基本信息中的代理金额。 |
+| 燃气公司 | 账号所属燃气公司。 |
+| 地址 | 账号地址。 |
+| 电话 | 账号电话。 |
+| 燃气表 | 状态为表具型号，属性包含表号、表具类型、表具型号编码和表序号。 |
+| 客户类型 | 账号基本信息中的客户类型。 |
+| 月度账单 | 在属性中保留规范化账单明细。 |
+
+默认禁用的诊断实体：
+
+| 实体 | 说明 |
+| --- | --- |
+| 客户状态 | 诊断实体。 |
+| 表具状态 | 诊断实体。 |
+
+## 服务
+
+### `china_gas.refresh_account`
+
+手动刷新 China Gas 账号数据。
+
+支持通过目标实体刷新指定集成实例；不选择目标时刷新所有 China Gas 实例。
+
+字段：
+
+| 字段 | 类型 | 默认值 | 说明 |
+| --- | --- | --- | --- |
+| `force` | boolean | `false` | 为 `true` 时绕过 coordinator debounce，立即请求接口。 |
+
+示例：
+
+```yaml
+service: china_gas.refresh_account
+target:
+  entity_id: sensor.example_china_gas_balance
+data:
+  force: true
+```
+
+## 注意事项
+
+- 本集成不包含登录流程，需要用户自行从中国燃气小程序请求中获取必要配置。
+- Token 可能过期，过期后请在集成选项中更新。
+- 本集成只做数据查询，不提供缴费、开票、改密、开阀等写操作。
+- 中国燃气小程序接口可能变化，如接口变更，需要同步更新集成。
+
+## 开源协议
+
+本项目使用 GNU General Public License v3.0 开源协议，详见 [LICENSE](LICENSE)。

@@ -1,0 +1,13 @@
+{
+  "name": "China Gas",
+  "content_in_root": false,
+  "render_readme": true,
+  "domains": [
+    "sensor"
+  ],
+  "country": [
+    "CN"
+  ],
+  "homeassistant": "2024.6.0"
+}
+
